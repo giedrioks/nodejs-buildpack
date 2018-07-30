@@ -60,6 +60,7 @@ func (y *Yarn) Build(buildDir, cacheDir string) error {
 		}
 	}
 
+    y.Log.Info("Yarn install args: %s", installArgs)
 	cmd := exec.Command("yarn", installArgs...)
 	cmd.Dir = buildDir
 	cmd.Stdout = y.Log.Output()

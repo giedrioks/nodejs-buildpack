@@ -143,10 +143,10 @@ func Run(s *Supplier) error {
 			return err
 		}
 
-		if err := s.MoveDependencyArtifacts(); err != nil {
-			s.Log.Error("Unable to move dependencies: %s", err.Error())
-			return err
-		}
+//		if err := s.MoveDependencyArtifacts(); err != nil {
+//			s.Log.Error("Unable to move dependencies: %s", err.Error())
+//			return err
+//		}
 
 		s.ListDependencies()
 
@@ -251,7 +251,7 @@ func (s *Supplier) BuildDependencies() error {
 		}
 	}
 
-	if err := s.runPostbuild(tool); err != nil {
+	if err := s.runPostbuildƒ(tool); err != nil {
 		return err
 	}
 
