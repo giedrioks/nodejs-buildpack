@@ -143,10 +143,10 @@ func Run(s *Supplier) error {
 			return err
 		}
 
-//		if err := s.MoveDependencyArtifacts(); err != nil {
-//			s.Log.Error("Unable to move dependencies: %s", err.Error())
-//			return err
-//		}
+		if err := s.MoveDependencyArtifacts(); err != nil {
+			s.Log.Error("Unable to move dependencies: %s", err.Error())
+			return err
+		}
 
 		s.ListDependencies()
 
@@ -264,6 +264,7 @@ func (s *Supplier) MoveDependencyArtifacts() error {
 	}
 
 	appNodeModules := filepath.Join(s.Stager.BuildDir(), "node_modules")
+	s.Log.Info("App node modules: %s", appNodeModules)
 
 	_, err := os.Stat(appNodeModules)
 	if err != nil {
@@ -274,6 +275,7 @@ func (s *Supplier) MoveDependencyArtifacts() error {
 	}
 
 	nodePath := filepath.Join(s.Stager.DepDir(), "node_modules")
+	s.Log.Info("Node path: %s", nodePath)
 
 	if err := os.Rename(appNodeModules, nodePath); err != nil {
 		return err
@@ -283,6 +285,7 @@ func (s *Supplier) MoveDependencyArtifacts() error {
 		return err
 	}
 
+    s.Log.Info("NODE_PATH is now: %s", nodePath)
 	return os.Setenv("NODE_PATH", nodePath)
 }
 
