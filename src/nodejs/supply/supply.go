@@ -251,7 +251,7 @@ func (s *Supplier) BuildDependencies() error {
 		}
 	}
 
-	if err := s.runPostbuildƒ(tool); err != nil {
+	if err := s.runPostbuild(tool); err != nil {
 		return err
 	}
 
